@@ -1,4 +1,4 @@
-﻿<h3>MiniSoundEditor</h3>
+<h3>MiniSoundEditor</h3>
 <table>
 <td><textarea rows=20 cols=60 id=code></textarea>
 <td><canvas id=canvas width=600></canvas>
@@ -33,7 +33,7 @@ s.start()`;
 
 p.onclick = function(){
   eval(code.value);
-
+  draw();
 }
 
 onload = function(){
@@ -483,10 +483,13 @@ ex = function(e, play=1){
   code.value = "// Sound\n" + examples[e][1] + golf;
   if(play){
     p.click();
-    canvas.width ^= 0;
-    x.moveTo(0, 75);
-    for(i=96e3;i--;) x.lineTo(i/100, f(i) * 65 + 75);
-    x.stroke();
   }
+}
+
+draw = function() {
+  canvas.width ^= 0;
+  x.moveTo(0, 75);
+  for(i=96e3;i--;) x.lineTo(i/100, f(i) * 65 + 75);
+  x.stroke();
 }
 </script>
