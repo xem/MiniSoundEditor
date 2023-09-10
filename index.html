@@ -8,7 +8,7 @@
 <br>
 <hr>
 <br>
-<b>Examples (by Anders Kaare)</b>
+<b>Examples (by Anders Kaare and me)</b>
 <br>
 <br>
 <div id=d></div>
@@ -471,6 +471,116 @@ examples = [
   var n=3e4;
   if (i > n) return null;
   return Math.sin(i/2000 - Math.sin(i/331)*Math.sin(i/61) + Math.sin(Math.sin(i/59)/39) * 33)*t(i,n);
+}`
+],
+
+[
+"nudge",
+`f = function(i){
+  var n=6e3;
+  if (i > n) return null;
+  var q = t(i,n);
+  return Math.sin(i*0.01*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q;
+}`
+],
+
+[
+"lock",
+`f = function(i){
+  var n=8e3;
+  if (i > n) return null;
+  return ((Math.pow(Math.pow(i,0.9)+Math.sin(i*1.06)*1000,0.8)&200)?0.5:-0.5)*Math.pow(t(i,n),1);
+}`
+],
+
+[
+"paper",
+`f = function(i){
+  var n=2e4-9000;
+  if (i > n) return null;
+  var q = t(i+10000,n);
+  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))*q;
+}`
+],
+
+[
+"burn",
+`f = function(i){
+  var n=30e4;
+  if (i > n) return null;
+  var q = t(i,n);
+  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5);
+}`
+],
+
+[
+"miniburn",
+`f = function(i){
+  var n=5e4;
+  if (i > n) return null;
+  var q = t(i,n);
+  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5);
+}`
+],
+
+[
+"wand",
+`f = function(i){
+  var n=5e4;
+  var n1=1e5;
+  if (i > n) return null;
+  i=Math.pow(i,1.2-Math.sin(i*2/n1))*6;
+  var x=Math.sin(i/30+Math.sin(i/1500));
+  return Math.pow(x,9)*t(i,n);
+}`
+],
+
+[
+"sword",
+`f = function(i){
+  var n=15e3;
+  if (i > n) return null;
+  var q = t(i,n);
+  return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q;
+}`
+],
+
+[
+"downbridge",
+`f = function(i){
+  var n=60e4;
+  if (i > n) return null;
+  return ((Math.pow(i+Math.sin(i*0.001)*1000,0.8)&200)?0.5:-0.5)*Math.pow(t(i,n),1);
+}`
+],
+
+[
+"cannonfire",
+`f = function(i){
+  var n=4e4;
+  if (i > n) return null;
+  return Math.sin(i/200 - Math.sin(i/331)*Math.sin(i/61) + Math.sin(Math.sin(i/59)/39) * 33)*t(i,n)*9;
+}`
+],
+
+[
+"fiou",
+`f = function(i){
+  var n=5e4;
+  if (i > n) return null;
+  var q = t(i,n);
+  i=i*0.7;
+  return (Math.pow(i*50,0.8)&34)?q:-q;
+}`
+],
+
+[
+"dooropen",
+`f = function(i){
+  var n=3e4;
+  if (i > n) return null;
+  var q = t(i,n);
+  return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q;
 }`
 ]
 ];
