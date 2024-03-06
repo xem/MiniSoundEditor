@@ -8,7 +8,7 @@
 <br>
 <hr>
 <br>
-<b>Examples (by Anders Kaare and me)</b>
+<b>Examples by Anders Kaare</b>
 <br>
 <br>
 <div id=d></div>
@@ -41,13 +41,6 @@ onload = function(){
 }
 
 examples = [
-
-[
-"noise",
-`f = function(i){
-  return Math.random() * 2 - 1;
-}`
-],
 
 [
 "shoot0",
@@ -475,6 +468,14 @@ examples = [
 ],
 
 [
+"noise",
+`f = function(i){
+  return Math.random() * 2 - 1;
+}`
+],
+
+// Me
+[
 "nudge",
 `f = function(i){
   var n=6e3;
@@ -574,18 +575,97 @@ examples = [
 }`
 ],
 
-[
-"dooropen",
+["dooropen",
 `f = function(i){
   var n=3e4;
   if (i > n) return null;
   var q = t(i,n);
   return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q;
 }`
-]
+],
+
+
+["splash1", "f = i => Math.sin(i/100 + Math.random()*50) * Math.exp(-i/8000)"],
+["powerup1", "f = i => Math.pow(i%256, 1.5) * Math.exp(-i/5000)"],
+["damage1", "f = i => 0.5 * (Math.random() * 2 - 1) * Math.exp(-i/2000)"],
+["laser1", "f = i => (i % 256) / 128 - 1  * Math.exp(-i/4000)"],
+["jump1", "f = i => Math.sin(i / 50 + 5 * Math.sin(i/1000)) * Math.exp(-i/6000)"],
+["magic1", "f = i => Math.sin(i/40) * Math.sin(i*0.003 + 1.5*Math.sin(i/700)) * Math.exp(-i/10000)"], 
+["unlock", "f = i =>  (Math.sin(i*0.02) + 0.5*Math.sin(i*0.03) + 0.25*Math.sin(i*0.06)) * Math.exp(-i/8000)"],
+["error", "f = i => Math.abs(((2*i % 4096) / 4096) - 1) * Math.exp(-i/6000)"],
+["wind", "f = i => 2 * (Math.random() - 0.5) * Math.exp(-i/20000)"],
+["laser2", "f = i => Math.sin(i * (i/5e5)) * Math.exp(-i/2e4);"],
+["powerup2", "f = i => (Math.sin(i/100) * Math.sin(i/500)) * Math.exp(-i/1e4) * 9; "],
+["footstep2", "f = i => (Math.random() - 0.5) * 0.3 * Math.exp(-i/2000); "],
+["explosion2", "f = i => (Math.random() * 2 - 1) * Math.exp(-i/1e4);"],
+["explosion3", "f = i => (Math.random() * 2 - 1) * Math.pow(1 - (i / 10000), 2) + 0.2 * Math.sin(i/50) * Math.exp(-i/3000);"],
+["heartbeat3", "f = i => Math.sin(i / 50) * Math.sin(i / 45) * Math.exp(-i/3000)"],
+["door3", "f = i => (0.5 +  Math.sin((i / 1000) + 4 * Math.sin(i / 5000))) * Math.pow(1 - (i / 15000), 2)"],
+["footstep3", "f = i => 0.5 * (Math.random() - 0.5) * Math.exp(-i/1000) + 0.2 * Math.sin(i / 20) * Math.exp(-i/4000) "],
+["rain3", "f = i => Math.random() * Math.exp(-i/50000)"],
+["fire3", "f = i => (Math.random() + 0.5 * Math.sin(i/300) + 0.2 * Math.sin(i/200)) * Math.exp(-i/10000)"],
+["sword3", "f = i => Math.sin(i * 0.03 + 1.5 * Math.sin(i * 0.003)) * Math.exp(-i / 5000)"],
+["paper3", "f = i => 0.8 * (Math.random() * 2 - 1) * Math.exp(-i/800)"],
+["glass3", "f = i => Math.sin(i/100 + 20 * Math.sin(i/4000)) * Math.exp(-i/1000)"],
+["explosion4", "f = explosion = i => { let env = Math.pow(1 - (i/96000), 3); let noise = (Math.random() - 0.5) * 2; let lowRumble = Math.sin(i / 200) * 0.3;  return (noise + lowRumble) * env; }"],
+["heartbeat4", "f = i => Math.sin(i/10) * Math.exp(-i/100) * (i % 600 < 300 ? 1 : 0.2)"],
+["footsteps4", "f = i => (Math.sin(i/20) + 0.2 * Math.random()) * Math.exp(-i/2000)"],
+["rain4", "f = i => (Math.random() * 2 - 1) * (i < 90000 ? Math.exp(-i/10000) : 0)"],
+["fire4", "f = i => (Math.random() * 2 - 1) * (1 - Math.pow(i/96000,8))"],
+["sword4", "f = i => Math.sin(Math.pow(i, 1.05)/200) * Math.exp(-i/20000) * 9"],
+["paper4", "f = i => (Math.random() * 2 - 1) * Math.exp(-i/500) "],
+["water4", "f = i => Math.sin(i/20) * (i < 1000 ? 1 : 0)"],
+["wind4", "f = i => (Math.random() * 2 - 1) * Math.pow(i, 0.1) * Math.exp(-i/50000)"],
+["arrow4", "f = i => (Math.random() * 2 - 1) * Math.exp(-i/1000) + Math.sin(i/50) * Math.exp(-i/2000)"],
+["levelup4", "f = i => {  let freq = 440 * Math.pow(2, (i % 96000) / 48000);  return Math.sin(freq) * Math.exp(-i/96000);}"],
+["tok5", "f = i => (0.8 * Math.sin(i / 10) + 0.5 * (Math.random() - 0.5)) * Math.exp(-i/1500)"],
+["bong5", "f = i => Math.sin(i / 20) * Math.exp(-i/5000) + 0.3 * Math.sin(i * 0.03) * Math.exp(-i/6000)"],
+["noteinverted5", "f = i => Math.sin(i / 20) * Math.sin(i * 0.04) * Math.pow(1 - i/48000, 6) "],
+["bowl5", "f = i => Math.sin(i / 30) * Math.sin(i * 0.07) * Math.exp(-i/6000)"],
+["alien5", "f = i =>  Math.sin((i % 400)/400 * 6.28) * Math.sin(i/5000) * Math.exp(-i/8000) * 5"],
+["forcefield5", "f = i => Math.sin(i/50) * Math.exp(-i/600) + (Math.random() - 0.5) * Math.exp(-i/3000) "],
+["bubble5", "f = i => Math.sin(i/80 + Math.tan(i/900)) * (i < 15000 ? Math.exp(-i/6000) : 0) / 5"],
+["charge5", "f = i => Math.sin(i * 0.01) * Math.pow(i, 0.01) * Math.exp(-i/8000) * 4"],
+["footgrass6", "f = i => (Math.sin(i/30) + 0.3 * Math.random()) * Math.exp(-i/2000)"],
+["footgravel6", "f = i => (Math.random() * 2 - 1) * Math.exp(-i/1000)"],
+["footstone6", "f = i => Math.sin(i/20) * Math.exp(-i/300)"],
+["splash6", "f = i => (Math.random() * 2 - 1) * Math.sin(i/50) * Math.exp(-i/5000)"],
+["moto6", "f = i => Math.sin(i*i/1e6) * Math.exp(-i/2000) * 9"],
+["rumble6", "f = i => (Math.sin(i/200) + Math.sin(i/350) + Math.sin(i/800))* Math.exp(-i/60000)"],
+["ting6", "f = i => (i%10 < 5 ? 1 : -1) * Math.exp(-i/2000)"],
+["elevator6", "f = i => Math.sin(i/20) * (Math.random() + 0.5) * Math.exp(-i/10000)"],
+["engine6", "f = i => Math.sin(i/10) * (i%800 < 200 ? 1 : 0)"],
+["phasing7", "f = i => Math.sin(i/100 + Math.cos(i/5000)) * Math.exp(-i/15000) "],
+["resonance7", "f = i => (Math.abs(i % 1024 - 512) / 512) * Math.exp(-i/10000)"],
+["alien7", "f = i => Math.sin(i / 500 + Math.log(i % 2000) * 5) * Math.exp(-i/5000)"],
+["drone7", "f = i => Math.sin(Math.sin(i/1000) * i / 20) * Math.exp(-i/60000)"],
+["warble7", "f = i => Math.sin(i * 0.01 + Math.sin(i * 0.0005) * 2) * Math.exp(-i/6000) * 9"],
+["wood7", "f = i => (i >> 7) & (i >> 5) & (i >> 3) ? Math.exp(-i/1000) : 0 "],
+["laser7", "f = i => Math.sin(Math.sqrt(i) * 10) * Math.exp(-i/8000)"],
+["forcefieldimpact7", "f = i => Math.sin(i/20 + Math.sin(i/2000)*5) * Math.exp(-i/4000) * (i/96000) * 9"],
+["wuuu7", "f = i => Math.sin(i/30) * Math.exp(-Math.sqrt(i)/200) * (i/96000)"],
+["glub7", "f = i => Math.sin(i/30 + Math.sin(i/70) * 5) * Math.exp(-Math.sqrt(i)/500)"],
+["rebound7", "f = i => (i%8000) / 8000 * Math.exp(-i/10000)"],
+["moto7", "f = i => Math.sin(i/500 + 20*Math.sin(i/7000)) * Math.exp(-Math.sqrt(i)/1000) * 9"],
+["ticks7", "f = i => Math.sin(i / 10) * (i % 4000 < 100 ? 1 : 0)"],
+["ufo7", "f = i => Math.sin(i / 60 + i / 500 + Math.sin(i/1000)*3) * Math.exp(-Math.sqrt(i)/2000)"],
+["wub8", "f = i => Math.tan(i/5000) * Math.abs(Math.sin(i/100)) * Math.exp(-i/10000)"],
+["crystal8", "f = i => Math.sin(i/20) * Math.cos(Math.sqrt(i)/5) * Math.exp(-i/20000)"],
+["glitch8", "f = i => Math.sin(i/10) * (i % Math.round(Math.log2(i+1) * 100) < 50 ? 1 : 0)"],
+["siren8", "f = i => Math.sin(i*(i/1e6)) * Math.exp(-i/96000); "],
+["dong8", "f = i => Math.sin(i/50) * Math.tanh(1 - i/96000)"],
+["bzz8", "f = i => (i%256)/128 - 1 + 0.3*Math.random()"],
+["whistle8", "f = i => Math.sin(Math.sqrt(i)*10) * Math.exp(-i/48000)"],
+["ring8", "f = i => Math.sin(i/50) * Math.abs(Math.cos(i/500)) * 5"],
+["wobble8", "f = i => Math.sin(i/20) * Math.sin(i/500) * Math.exp(-i/10000);"],
+["electrictool8", "f = i => ((i * Math.cbrt(i)) % 256)/128 - 1"],
+["alien8", "f = i => Math.sin(i/100) * Math.atan2(i%2000 - 1000, 100) * Math.exp(-i/10000) * 9"],
+["alarm8", "f = i => (i % 512) / 256 - 1 + Math.sin(Math.sqrt(i)) * Math.exp(-i/5000)"]
 ];
 
 for(e in examples){
+  if(examples[e][0] == "nudge") d.innerHTML += "<p><b>Examples by xem</b>";
+  if(examples[e][0] == "splash1") d.innerHTML += "<p><b>Examples by AI</b>";
   d.innerHTML += "<button onclick=ex("+e+")>"+examples[e][0];
 }
 
