@@ -470,11 +470,11 @@ examples = [
 [
 "noise",
 `f = function(i){
-  return Math.random() * 2 - 1;
+  return (Math.random() * 2 - 1)/10;
 }`
 ],
 
-// Me
+// Me (2023)
 [
 "nudge",
 `f = function(i){
@@ -585,6 +585,147 @@ examples = [
 ],
 
 
+// Me (2024)
+["step",
+`f = (s,r,e) => ((3800,s>3800?null:(e=t(s,3800),Math.sin(.01*s*Math.sin(.001*s+Math.sin(s/200))+Math.sin(s/200))*e*e/9))*2)`],
+
+["splash",
+`f = i => {
+  var n=20e4;
+  if (i > n) return null;
+  var q = t(i,n);
+  return (i<6e4?(Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>3e3?i/2e3:6)):0)/3;
+}`],
+   
+["waterjump",
+`f = i => {
+  var n=2e4-9000;
+  if (i > n) return null;
+  var q = t(i+10000,n);
+  return (Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))*q)/3;
+}`],
+
+["swim",
+`f => i => {
+  var n=2e4-9000;
+  if (i > n) return null;
+  var q = t(i+10000,n);
+  return (Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))*q)/30;
+}`],
+
+// Me (2025)
+
+["thunder",
+`f = (i,q,n) => {
+  n=25000;
+  if (i > n) return null;
+  return Math.sin(i/200 - Math.sin(i/331)*Math.sin(i/61) + Math.sin(Math.sin(i/59)/39) * 33)*t(i,n)*9;
+}`],
+
+["nudge2",
+`f = (i,q,n) => {
+  n=6e3;
+  if (i > n) return null;
+  q = t(i,n);
+  return Math.sin(i*0.01*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q/10;
+}`],
+
+["write",
+`f = i => (Math.sin(i/200) + Math.sin(i/350) + Math.sin(i/800))* Math.exp(-i/60000)`],
+
+["ting", 
+`f = i => (i%10 < 5 ? 1 : -1) * Math.exp(-i/2000)`],
+
+["opendoor",
+`f = (i,q,n) => {
+  n=25000;
+  if (i > n) return null;
+  q = t(i,n);
+  return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q/10;
+}`],
+
+["cannon", 
+`f => (Math.random() * 2 - 1) * Math.exp(-i/1e4)`],
+
+["step2",
+`f = (i,q,n) => {
+  n=3800;
+  if (i > n) return null;
+  q = t(i,n);
+  return Math.sin(i*0.01*Math.sin(0.001*i+Math.sin(i/200))+Math.sin(i/200))*q*q/9;
+}`],
+
+
+// Me (2026)
+["thunder2",
+`f = (i,q,n) => {
+  n=25000;
+  if (i > n) return null;
+  return Math.sin(i/200 - Math.sin(i/331)*Math.sin(i/61) + Math.sin(Math.sin(i/59)/39) * 33)*t(i,n)*2;
+}`],
+
+["bubble", `f= i => {
+  let n = 7000;
+  if (i > n) return null;
+  let q = t(i, n);
+  return Math.sin(i / (60 - (i / 180))) * (q ** 1.5);
+}`],
+
+["tung",
+`f = i => Math.sin(i / 30) * Math.sin(i * 0.07) * Math.exp(-i/6000)`],
+
+["splash",
+`f = i => (Math.random() * 2 - 1) * Math.sin(i/50) * Math.exp(-i/10000) / 7;`],
+
+["taktak",
+`f = i => {
+
+  const n = 40000;
+  if (i > n) return null;
+
+  const x = i % 3100;
+
+  const hit =
+      Math.exp(-x*x/2300);
+
+  return (
+      Math.sin(
+          i / 48000 * Math.PI * 2 * 1800
+      ) +
+      Math.sin(
+          i / 48000 * Math.PI * 2 * 2700
+      ) * .3
+  ) * hit * t(i,n) * .5;
+}`],
+
+["boat",
+`f = i => {
+  let n = 40000;
+  if (i > n) return null;
+  let q = t(i, n);
+  let env = Math.sin(i / 12700); // fade in/out
+  let horn = Math.sin(i / 110) + 0.5 * Math.sin(i / 55);
+  return horn * env * 0.8;
+}`],
+
+["grow",
+`f = i => {
+  let n = 24000;
+  if (i > n) return null;
+  let q = t(i, n);
+  let f = 40 - (i / 800);
+  return Math.sin(i / f) * Math.sin(i / 600) * q;
+}`],
+
+["crayon",
+`f = i => {
+  var n=8e4;
+  if (i > n) return null;
+  var q = t(i,n);
+  return Math.sin(i*0.001*Math.sin(0.0009*i+Math.sin(i/200)))*q/20;
+}`],
+
+// IA
 ["splash1", "f = i => Math.sin(i/100 + Math.random()*50) * Math.exp(-i/8000)"],
 ["powerup1", "f = i => Math.pow(i%256, 1.5) * Math.exp(-i/5000)"],
 ["damage1", "f = i => 0.5 * (Math.random() * 2 - 1) * Math.exp(-i/2000)"],
@@ -664,8 +805,11 @@ examples = [
 ];
 
 for(e in examples){
-  if(examples[e][0] == "nudge") d.innerHTML += "<p><b>Examples by xem</b>";
-  if(examples[e][0] == "splash1") d.innerHTML += "<p><b>Examples by AI</b>";
+  if(examples[e][0] == "nudge") d.innerHTML += "<p><b>Examples by xem</b></p><br>2023: ";
+  else if(examples[e][0] == "step") d.innerHTML += "<br>2024: ";
+  else if(examples[e][0] == "thunder") d.innerHTML += "<br>2025: ";
+  else if(examples[e][0] == "thunder2") d.innerHTML += "<br>2026: ";
+  else if(examples[e][0] == "splash1") d.innerHTML += "<p><b>Examples by AI</b>";
   d.innerHTML += "<button onclick=ex("+e+")>"+examples[e][0];
 }
 
